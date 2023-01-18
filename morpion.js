@@ -1,24 +1,23 @@
 let linkJ1 = "/image-morpion/rond.png";
 let linkJ2 = "/image-morpion/croix.png";
-let tour = 0;
 let playCaseJ1 = [];
 let playCaseJ2 = [];
 let boolVictory = false;
+let tour = 0;
 let ai = false;
 let scorej1 = 0;
 let scorej2 = 0;
 
 function jouer(zone) {
+	tour++;
 
 	document.getElementById("choixMode").disabled = true;
- 
+
 	if (!playCaseJ1.includes(zone) && boolVictory == false || !playCaseJ2.includes(zone) && boolVictory == false) {
-		if (tour % 2 == 0 || ai == true ) {
+		if (tour % 2 == 0 || ai == true) {
 			// joueur 1
 			document.getElementById(zone).innerHTML += '<img class="rond" src=' + linkJ1 + ' alt="joueur1"></img>';
 			playCaseJ1.push(zone);
-
-			console.log(playCaseJ1);
 
 			victory(playCaseJ1, "J1");
 
@@ -34,21 +33,18 @@ function jouer(zone) {
 			}
 		}
 
-		tour++
-	}else if ( boolVictory == true ){
+		console.log(playCaseJ1);
+		console.log(playCaseJ2);
+
+	} else if (boolVictory == true) {
 		alert("Partie terminée.");
 	} else {
 		alert("Case déjà jouée.");
 	}
-
-	if ( tour == 9 ){
-		Initialisation();
-	}
-
 }
 
 function playAi() {
-	if ( ai == true && boolVictory == false ) {
+	if (ai == true && boolVictory == false) {
 		let positions = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 		let newPlay;
 
@@ -66,9 +62,9 @@ function playAi() {
 function Initialisation() {
 
 	document.getElementById("rejouer").setAttribute("hidden", true);
-	
-	if ( boolVictory == true ) {
-		
+
+	if (boolVictory == true) {
+
 		let images = document.querySelectorAll("td img");
 
 		images.forEach(element => {
@@ -94,7 +90,11 @@ function aiChoice() {
 }
 
 function victory(tableau, j) {
-	if (
+
+	if ( tour == 9 ) {
+		boolVictory = true;
+		Initialisation();
+	} else if (
 		tableau.includes('a1') && tableau.includes('a2') && tableau.includes('a3') ||
 		tableau.includes('b1') && tableau.includes('b2') && tableau.includes('b3') ||
 		tableau.includes('c1') && tableau.includes('c2') && tableau.includes('c3') ||
@@ -105,11 +105,11 @@ function victory(tableau, j) {
 
 		tableau.includes('c1') && tableau.includes('b2') && tableau.includes('a3') ||
 		tableau.includes('c3') && tableau.includes('b2') && tableau.includes('a1')) {
-		
-		if ( j == "J1"){
+
+		if (j == "J1") {
 			alert("LES RONDS ONT GAGNE !");
 			scorej1++;
-		}else{
+		} else {
 			alert("LES CROIX ONT GAGNE !");
 			scorej2++;
 		}
