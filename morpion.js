@@ -91,10 +91,7 @@ function aiChoice() {
 
 function victory(tableau, j) {
 
-	if ( tour == 9 ) {
-		boolVictory = true;
-		Initialisation();
-	} else if (
+	if (
 		tableau.includes('a1') && tableau.includes('a2') && tableau.includes('a3') ||
 		tableau.includes('b1') && tableau.includes('b2') && tableau.includes('b3') ||
 		tableau.includes('c1') && tableau.includes('c2') && tableau.includes('c3') ||
@@ -118,5 +115,9 @@ function victory(tableau, j) {
 		tour = 0;
 		document.getElementById("rejouer").removeAttribute("hidden");
 		document.getElementById("choixMode").disabled = false;
+		
+	}else if( tour == 9 ){
+		boolVictory = true;
+		Initialisation();
 	}
 }
