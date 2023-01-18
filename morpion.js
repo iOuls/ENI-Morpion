@@ -41,10 +41,6 @@ function jouer(zone) {
 		alert("Case déjà jouée.");
 	}
 
-	if ( tour == 9 ){
-		Initialisation();
-	}
-
 }
 
 function playAi() {
@@ -118,5 +114,9 @@ function victory(tableau, j) {
 		tour = 0;
 		document.getElementById("rejouer").removeAttribute("hidden");
 		document.getElementById("choixMode").disabled = false;
+	}else if (tour == 9){
+		tour = 0;
+		boolVictory = true;
+		Initialisation();
 	}
 }
