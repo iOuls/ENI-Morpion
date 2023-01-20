@@ -22,7 +22,7 @@ function jouer(zone) {
 			victory(playCaseJ1, "J1");
 
 			// tour IA
-			playAi();
+			playAiFacile();
 
 		} else {
 			if (ai == false) {
@@ -115,8 +115,8 @@ function victory(tableau, j) {
 		tour = 0;
 		document.getElementById("rejouer").removeAttribute("hidden");
 		document.getElementById("choixMode").disabled = false;
-		
-	}else if( tour == 9 ){
+	}else if (tour == 9){
+		tour = 0;
 		boolVictory = true;
 		Initialisation();
 	}
